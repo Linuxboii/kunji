@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kunji - Strong passphrase and password generator</title>
+  <meta name="description" content="Generate memorable passphrases from the EFF wordlist or random passwords, using your device's secure random generator. Shows strength in bits and time to crack.">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    :root { --accent: #6d28d9; }
+    @media (prefers-color-scheme: dark) { :root { --accent: #a78bfa; --accent-ink: #1e0b47; } }
+    .out { font-family: var(--mono); font-size: clamp(1.1rem, 0.9rem + 1vw, 1.5rem); padding: 18px; background: var(--surface-2); border-radius: var(--radius); word-break: break-all; min-height: 72px; line-height: 1.4; }
+    .tabs { display: inline-flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .tabs button { border: 0; border-radius: 0; background: transparent; }
+    .tabs button[aria-selected=true] { background: var(--accent); color: var(--accent-ink); }
+    .opts { display: grid; gap: 10px; }
+    .opts label.row { gap: 8px; font-size: 15px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap">
+    <h1>Kunji</h1>
+    <p>Passphrases you can remember and passwords you do not have to. Made on your device with its secure random generator, never sent or stored.</p>
+  </div></header>
+  <main><div class="wrap grid-2">
+    <section class="panel stack">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" id="tabPhrase" aria-selected="true">Passphrase</button>
+        <button type="button" role="tab" id="tabPass" aria-selected="false">Password</button>
+      </div>
+      <div class="opts" id="phraseOpts">
+        <label class="field">Words <span class="hint" id="countLabel"></span><input id="count" type="range" min="3" max="12" value="6"></label>
+        <label class="field">Separator
+          <select id="sep"><option value="-">Hyphen</option><option value=" ">Space</option><option value=".">Dot</option><option value="_">Underscore</option><option value="">None</option></select>
+        </label>
+        <label class="row"><input type="checkbox" id="cap"> Capitalise each word</label>
+        <label class="row"><input type="checkbox" id="digit"> Add a number</label>
+      </div>
+      <div class="opts" id="passOpts" hidden>
+        <label class="field">Length <span class="hint" id="lenLabel"></span><input id="len" type="range" min="8" max="64" value="20"></label>
+        <label class="row"><input type="checkbox" id="lower" checked> Lowercase a to z</label>
+        <label class="row"><input type="checkbox" id="upper" checked> Uppercase A to Z</label>
+        <label class="row"><input type="checkbox" id="digits" checked> Digits 0 to 9</label>
+        <label class="row"><input type="checkbox" id="symbols" checked> Symbols like ! # %</label>
+        <label class="row"><input type="checkbox" id="noAmb"> Skip look-alikes (I, l, 1, O, 0, o)</label>
+      </div>
+      <p class="err" id="err" role="alert"></p>
+    </section>
+    <section class="panel stack" aria-live="polite">
+      <div class="out" id="out"></div>
+      <div class="row"><button class="primary" id="copy" type="button">Copy</button><button id="again" type="button">Generate another</button></div>
+      <div class="stats">
+        <div class="stat"><b id="bits">-</b><span>Bits of entropy</span></div>
+        <div class="stat"><b id="time" style="font-size:1.1rem">-</b><span>To guess at 10 billion tries a second</span></div>
+      </div>
+      <p class="muted small">Aim for 70 bits or more for anything important. Use a password manager to store them, and a different one for every site.</p>
+    </section>
+  </div></main>
+  <footer class="bottom"><div class="wrap">
+    <span>Kunji. Free and open source. Wordlist by the EFF, CC BY 3.0.</span>
+    <span><a href="https://github.com/Linuxboii/kunji">Source</a> &nbsp; <a href="https://sushanth.avlokai.com">Made by Sushanth Kasturi</a></span>
+  </div></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
