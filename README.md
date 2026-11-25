@@ -16,6 +16,14 @@ Passphrase and password generator.
 
 Nothing is stored or sent. Wordlist by the Electronic Frontier Foundation, CC BY 3.0.
 
+## Demand
+
+Semrush estimates passwordsgenerator.net, a single password generator site, at about 38,600 visits a month.
+
+- [Semrush: passwordsgenerator.net](https://www.semrush.com/website/passwordsgenerator.net/overview/)
+
+These figures measure demand for the task, from existing tools. They are third-party estimates or company claims, not usage of this tool.
+
 ## Privacy
 
 Everything runs in your browser. There is no backend, no analytics and no account. Nothing you enter is uploaded.
